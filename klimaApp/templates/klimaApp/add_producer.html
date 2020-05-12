@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Formulrz dodawania Producenta:</h2>
+    <form action="" method='post'>
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <input type="submit" value="Dodaj producenta">
+
+    </form>
+<br>
+    <br>
+{% endblock %}

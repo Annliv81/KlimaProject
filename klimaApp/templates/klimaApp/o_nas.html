@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="home1">
+    <h1>O NAS</h1>
+    <h2>Profesjonalni i niezawodni</h2>
+
+    <p>Jesteśmy uznanym partnerem proponując Państwu pełen zakres usług dotyczący komfortu powietrza w Państwa otoczeniu.
+    <br>Świadczymy usługi z zakresu montażu i serwisu klimatyzacji, ozonowania, dezrydoracji, dezynfekcji
+    <br>oraz z zakresu montażu i serwisu pomp ciepła.
+    <br>Cokolwiek chodzi Ci po głowie, nasi specjaliści są tu po to, aby urzeczywistnić Twoje marzenia.
+    <br>Skontaktuj się z nami, aby otrzymać bezpłatną wycenę już dziś.
+</div>
+
+                        <hr style="color: dimgrey;">
+<div class="home2">
+        <h1>NASZE USŁUGI</h1>
+    <div>
+    <p>
+    <a  href="/oferts"><img src ="{% static 'montazKLIM.jpg' %}" width="320" height="250" alt="klimatyzacje" title="klimatyzacje"></a>&emsp;
+    <a  href="/ozone"><img src ="{% static 'ozone.jpg' %}" width="320" height="250" alt="ozonowanie" title="ozonowanie"></a>&emsp;
+    <a  href="/pomps"><img src ="{% static 'pompyCIE.jpg' %}" width="320" height="250" alt="pompy" title="pompyC"></a>&emsp;
+
+
+    </p>
+    </div>
+
+                        <hr style="color: dimgrey;">
+
+</div>
+    <div class="home3">
+        <h1>UZYSKAJ WYCENĘ</h1>
+            <div>
+                <p>
+                    FORMULARZ WYCENY
+
+
+                </p>
+            </div>
+
+        <hr style="color: dimgrey;">
+
+    </div>
+
+  <div class="contaktForm">
+        <h1>KONTAKT</h1>
+            <div class="formContact">
+
+
+                    WYPEŁNIJ FORMULARZ - SKONTAKTUJEMY SIĘ Z TOBĄ
+        {% csrf_token %}
+  {{form.as_p}}
+ <input type="submit" value="Wyślij">
+
+            </div>
+
+        <hr style="color: dimgrey;">
+
+    </div>
+{% endblock %} %}

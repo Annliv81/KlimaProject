@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class='category'>
+ <table>
+            <tr>
+                <h1>Lista producentów:</h1>
+
+                    {% for producer in producers %}
+                        <th>{{producer.name}}</th>
+                        {% if user.is_superuser %}
+                        <th><a href="/producer_edit/{{producer.id}}"><img src ="{% static 'edytuj.jpg' %}" width="140" height="30" alt="edytuj" title="edytuj"></a></th>
+                        <th><a href="/producer_delete/{{producer.id}}"><img src ="{% static 'usun.jpg' %}" width="140" height="30" alt="usun" title="usun"></a></th>
+                        {% endif %}
+
+            </tr>
+
+
+        {%endfor %}
+ </table>
+</div>
+{% endblock %}

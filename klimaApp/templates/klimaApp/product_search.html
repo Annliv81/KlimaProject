@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <form>
+        <h1>Szukaj produktu:</h1>
+        {{ form.as_p}}
+        <p><input type="submit" value="Szukaj produktu"></p>
+    </form>
+    <h2>Spełniają kryteria:</h2>
+
+    <table>
+    <thead>
+
+    </thead>
+    <tbody>
+    <tr>
+    {% for product in object_list %}
+        <tr></tr>
+        <th>{{ product.name }} </th>
+        <th>{{ product.producer }}</th>
+        <th>{{ product.get_color_display }}</th>
+        <th>{{ product.price }}</th>
+        <th><a href="/product_details/{{product.id}}"><img src ="{% static 'szczegoly.jpg' %}" width="140" height="30" alt="logo" title="szczegoly"></a>
+            {% if user.is_superuser %}
+                <th><a href="/product_edit/{{ product.id }}"><img src ="{% static 'edytuj.jpg' %}" width="140" height="30" alt="logo" title="edytuj"></a></th>
+                <th><a href="/product_delete/{{product.id}}"><img src ="{% static 'usun.jpg' %}" width="140" height="30" alt="logo" title="usun"></a></th>
+            {% endif %}
+        {% empty %}
+        Brak wyników wyszukiwania
+       {%endfor %}
+        </th>
+    </tr>
+    </tbody>
+    </table>
+
+{% endblock %}

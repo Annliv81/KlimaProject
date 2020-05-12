@@ -1,0 +1,143 @@
+{% load static %}
+<html>
+    <head><meta charset="utf-8">
+    </head>
+    <body>
+            {% if request.user.is_authenticated %}
+            Cześć {{request.user.username}}
+            <a href="/logout"> Wyloguj się</a>
+
+        {% else %}
+            <a href="/user_login">Zaloguj się</a>
+        {% endif %}
+
+<div></div><center>
+    <a href="/"><img src="{% static 'o nas.jpg' %}" width="140" height="30" alt="o nas" /></a>&emsp;
+    <a href="/oferts"><img src="{% static 'oferta.jpg' %}" width="140" height="30" alt="oferta" /></a>&emsp;
+    <a href="/montaz">Montaż</a>&emsp;
+    <a href="/kontakt"><img src="{% static 'kontakt.jpg' %}" width="140" height="30" alt="kontakt" /></a>&emsp;
+</div></center>
+
+<center><table width="100%" cellspacing="0" cellpadding="0"><STYLE type="text/css">}
+</STYLE>
+<tr>
+<tr>
+    <center><img src ="{% static 'loft3.jpg' %}" alt="logo" title="logoK"/>
+</div>
+
+   <table>
+
+{% if user.is_superuser %}
+        <h3>
+        <a href="/product_add/">Dodaj produkt</a> &emsp;
+        <a href="/product_update/<int:product_id>">Edytuj produkt</a>&emsp;
+        <a href="/category_add/">Dodaj kategorie</a> &emsp;
+        <a href="/producer_add/">Dodaj producenta</a>&emsp;
+        </h3>
+{% endif %}
+
+            {% block content %}
+            {% endblock %}
+
+
+
+<tr><td><center><font color="#0392B5"> &nbsp;&nbsp;&nbsp;&nbsp;Kontakt:
+<td>&nbsp;&nbsp;&nbsp;&nbsp<font color="#0392B5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="{% static 'telf.jpg' %}" width="35" height="34" alt="" />&nbsp; &nbsp;<font color="#0392B5"> tel. 600 000 000
+&nbsp;&nbsp<img src="{% static 'mail.jpg' %}" width="35" height="35" alt="" />&nbsp;&nbsp;<a href="mailto:klimatyzacje.poznan@gmail.com">e-mail: klimatyzacje.poznan@gmail.com</font></td></tr>
+</table>
+
+ <br/><br/><br/>
+<b><font size="2" color="gray" face"tahoma">
+<p align="center">Klima Sp.z o.o.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP: 779 779 79 79 &nbsp;</p>
+ </tr><hr width="900" /></font></td></center>
+
+<p align="center"><font color="gray">COPYRIGHT 2010 ALL RIGHTS RESERVED
+&nbsp;by bras &nbsp; 2020</font></p>
+
+</font></b>
+ </font>{% load static %}
+<html>
+    <head><meta charset="utf-8">
+    </head>
+    <body>
+            {% if request.user.is_authenticated %}
+            Cześć {{request.user.username}}
+            <a href="/logout"> Wyloguj się</a>
+
+        {% else %}
+            <a href="/user_login">Zaloguj się</a>
+        {% endif %}
+
+<div></div><center>
+    <a href="/"><img src="{% static 'o nas.jpg' %}" width="140" height="30" alt="o nas" /></a>&emsp;
+    <a href="/oferts"><img src="{% static 'oferta.jpg' %}" width="140" height="30" alt="oferta" /></a>&emsp;
+    <a href="/montaz"><img src="{% static 'montaz.jpg' %}" width="140" height="30" alt="montaz" /></a>&emsp;
+    <a href="/certyfikaty"><img src="{% static 'certyfikaty.jpg' %}" width="140" height="30" alt="certyfikaty" /></a>&emsp;
+    <a href="/kontakt"><img src="{% static 'kontakt.jpg' %}" width="140" height="30" alt="kontakt" /></a>&emsp;
+</div></center>
+
+<center><table width="100%" cellspacing="0" cellpadding="0"><STYLE type="text/css">}</center>
+</STYLE>
+<tr>
+<tr>
+        <center><img src ="{% static 'loft3.jpg' %}" width="1040" height="330" alt="logo" title="logoK"/></center>
+</div>
+
+   <table>
+
+{% if user.is_superuser %}
+    <h1>
+
+        <tr>
+            <th><img src ="{% static 'produkt.jpg' %}" width="140" height="30" title="produkt"/></th>
+            <th scope="cd"><img src ="{% static 'kategoria.jpg' %}" width="140" height="30" title="kategoria"/></th>
+            <th scope="cd"><img src ="{% static 'producent.jpg' %}" width="140" height="30" title="producent"/></th>
+        </tr>
+        <tr>
+            <th scope="row"><a href="/product_add/">Dodaj</a></th>
+            <th scope="row"><a href="/category_add/">Dodaj</a></th>
+            <th scope="row"><a href="/producer_add/">Dodaj</a></th>
+        </tr>
+        <tr>
+            <th scope="row"><a href="/product_edit/">Edytuj</a></th>
+            <th scope="row"><a href="/category_edit/">Edytuj</a></th>
+            <th scope="row"><a href="/producer_edit/">Edytuj</a></th>
+        </tr>
+        <tr>
+            <th scope="row"><a href="/product_delete/">Usuń</a></th>
+            <th scope="row"><a href="/category_delete/">Usuń</a></th>
+            <th scope="row"><a href="/producer_delete/">Usuń</a></th>
+        </tr>
+
+
+    </h1>
+
+{% endif %}
+
+            {% block content %}
+            {% endblock %}
+
+    <footer>
+<tr> </tr>
+       <p><img src ="{% static 'panel_air.png' %}"  title="paner air"/></p>
+<tr><td><center><font color="#0392B5"> &nbsp;&nbsp;&nbsp;&nbsp;Kontakt:
+<td>&nbsp;&nbsp;&nbsp;&nbsp<font color="#0392B5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="{% static 'telf.jpg' %}" width="35" height="34" alt="" />&nbsp; &nbsp;<font color="#0392B5"> tel. 796 378 930
+&nbsp;&nbsp<img src="{% static 'mail.jpg' %}" width="35" height="35" alt="" />&nbsp;&nbsp;<a href="mailto:klimatyzacje.poznan@gmail.com">e-mail: klimatyzacje.poznan@gmail.com</font></td></tr>
+</table>
+
+ <br/><br/><br/>
+<b><font size="2" color="gray" face"tahoma">
+<p align="center">Aiuto sp.z o.o.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIP: 779 779 79 79 &nbsp;</p>
+ </tr><hr width="900" /></font></td></center>
+
+<p align="center"><font color="gray">COPYRIGHT 2010 ALL RIGHTS RESERVED
+&nbsp;by bras &nbsp; 2020</font></p>
+
+    </footer>
+    </body>
+</html>
+
+  </body>
+  </body>

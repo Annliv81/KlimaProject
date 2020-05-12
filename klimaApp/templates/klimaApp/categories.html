@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class='category'>
+        <table>
+        <h1>Lista kategorii:</h1>
+
+            <tr>
+
+                {% for category in categorys %}
+                    <th>{{category.name}}</th>
+                    <th><a href="/category_details/{{category.id}}"><img src ="{% static 'szczegoly.jpg' %}" width="140" height="30" alt="szczegoly" title="szczegoly"></a></th>
+
+
+                    {% if user.is_superuser %}
+                    <th><a href="/category_edit/{{ category.id }}"><img src ="{% static 'edytuj.jpg' %}" width="140" height="30" alt="logo" title="edytuj"></a></th>
+                    <th><a href="/category_delete/{{category.id}}"><img src ="{% static 'usun.jpg' %}" width="140" height="30" alt="logo" title="usun"></a></th>
+                    {% endif %}
+
+            </tr>
+                {%endfor %}
+        </table>
+</div>
+{% endblock %}
+
+

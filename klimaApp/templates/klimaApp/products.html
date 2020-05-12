@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<table>
+{% if user.is_superuser %}
+    <h1>
+
+        <tr>
+            <th><h2>Dodaj:</h2></th>
+            <th scope="row"><a href="/product_add/"><img src ="{% static 'produkt.jpg' %}" width="140" height="30" title="produkt"/></a></th>
+            <th scope="row"><a href="/category_add/"><img src ="{% static 'kategoria.jpg' %}" width="140" height="30" title="kategoria"/></a></th>
+            <th scope="row"><a href="/producer_add/"><img src ="{% static 'producent.jpg' %}" width="140" height="30" title="producent"/></a></th>
+        </tr>
+
+    </h1>
+
+{% endif %}
+
+</table>
+
+
+
+<div class="products">
+    <h2>Oferta Klimatyzacji:</h2>
+<div class = "menu">
+    <p><a href="/oferts/">Produkty</a>
+        <a href="/categories/">Kategorie</a>
+        <a href="/producers/"> Producenci</a></p>
+</div>
+<div class="gallery">
+    <table class="gallery">
+
+        <tr>
+        {% for product in products %}
+            {% if product.foto != None %}
+                <th><img src="{{product.foto.url}}" width=120></th>
+            {% endif %}
+
+            <th>{{product.name}}</th>
+            <th>{{ product.producer }}</th>
+            <th>{{ product.price }} zł</th>
+            <th><a href="/product_details/{{product.id}}"><img src ="{% static 'szczegoly.jpg' %}" width="140" height="30" alt="szczegoly" title="szczegoly"></a></th>
+            <th><a href="/basket/{{.id}}"><img src ="{% static 'koszyk.jpg' %}" width="40" height="30" alt="Dodaj" title="Dodaj do koszyka"></a></th>
+
+
+            {% if user.is_superuser %}
+                <th><a href="/product_edit/{{ product.id }}"><img src ="{% static 'edytuj.jpg' %}" width="140" height="30" alt="edytuj" title="edytuj"></a></th>
+                <th><a href="/product_delete/{{product.id}}"><img src ="{% static 'usun.jpg' %}" width="140" height="30" alt="usun" title="usun"></a></th>
+
+            {% endif %}
+        </tr>
+
+
+        {%endfor %}
+
+
+    </table>
+</div></div>
+            <h2>Oferta Montażu:</h2>
+{% endblock %}

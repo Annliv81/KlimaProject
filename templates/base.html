@@ -1,0 +1,72 @@
+{% load static %}
+
+<!doctype html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Klimatyzacje</title>
+
+        <link rel="stylesheet" href="{%  static 'css/style.css' %}">
+
+<div class = "login">
+
+<a class="block_2" href="/user_registration">Zarejestruj się</a>&emsp;
+             {% if request.user.is_authenticated %}
+            Cześć {{request.user.username}}
+            <a href="/logout"> Wyloguj się</a>
+
+        {% else %}
+            <a href="/user_login">Zaloguj się</a>
+        {% endif %}
+
+    <div class="basket">
+    <a href="/product_search"><img src="{% static 'lupka.jpg' %}" width="50" height="30" alt="szukaj" /></a>&emsp;
+    <a href="/basket"><img src="{% static 'koszyk.jpg' %}" width="40" height="30" alt="koszyk" /></a>&emsp;
+    </div></div>
+</div>
+
+    </head>
+    <body>
+        <div class="title">
+            KLIMATYZACJA - OZONOWANIE - POMPY CIEPŁA
+            <hr style="color: dimgrey;">
+            <div>
+<div class = "menu">
+    <p>
+    <a  href="/">Home</a>&emsp;
+    <a  href="/oferts">Sklep</a>&emsp;
+    <a  href="/montaz">Montaż</a>&emsp;
+    <a  href="/certyfikaty">Certifikaty</a>&emsp;
+    <a  href="/kontakt">Kontakt</a>&emsp;
+
+    </p>
+</div></div>
+    </div>
+<div data-border-width="1px" class="style-ka26c6gh" id="comp-ka26c6fp1" style="transform-origin: center 0.5px; left: 20px; width: 940px; position: absolute; top: 108px; height: 5px;"></div>
+    <div class="mainIMG">
+    <img src ="{% static 'logoFoto.jpg' %}" width="1000" height="420" alt="mainIMG" title="mainIMG">
+                    <hr style="color: dimgrey;">
+    </div>
+
+            {% block content %}
+
+            {% endblock %}
+
+
+<footer>
+<div class="footer">
+
+<p>Kontakt:
+tel. 796 378 930
+<a href="mailto:klimatyzacje.poznan@gmail.com">e-mail: klimatyzacje.poznan@gmail.com</a>
+<p>
+    Aiuto sp.z o.o. NIP: 779 779 79 79</p>
+                 <hr style="color: dimgrey;">
+
+
+<p align="center">COPYRIGHT 2010 ALL RIGHTS RESERVED&nbsp;by bras &nbsp; 2020</p>
+</div>
+</div>
+</footer>
+</body>
+</html>

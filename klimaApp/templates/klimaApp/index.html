@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ol>
+    <h1>Oferta:</h1>
+
+    <ul>
+        {% for product in products %}
+        <p>{{product.name}}<a href="/product/{{airProduct.id}}">(szczegóły)</a>
+
+
+        {%endfor %}
+    </ul>
+
+</ol>
+
+{% endblock %}

@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h2>Formulrz dodawania Producenta:</h2>
+
+    <div class="home1">
+{% if user.is_superuser %}
+    <p><b>DODAJ: </b><a href="/product_add/"><button type="button" class="btn btn-secondary">Produkt</button></a>
+            <a href="/category_add/"><button type="button" class="btn btn-secondary">Kategorie</button></a>
+            <a href="/producer_add/"><button type="button" class="btn btn-secondary">Producenta</button></a>
+            </p>
+{% endif %}
+    <h2>Formularz dodawania Producenta:</h2>
+        <br>
     <form action="" method='post'>
         {% csrf_token %}
         {{ form }}
@@ -10,5 +20,6 @@
 
     </form>
 <br>
+    </div>
     <br>
 {% endblock %}

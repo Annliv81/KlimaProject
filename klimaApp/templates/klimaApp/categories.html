@@ -3,24 +3,43 @@
 
 
 {% block content %}
+    <div class = "home1">
+
+    <p><a href="/products/"><button type="button" class="btn btn-Home">Produkty</button></a>
+        <a href="/categories/"><button type="button" class="btn btn-Home">Kategorie</button></a>
+        <a href="/producers/"><button type="button" class="btn btn-Home">Producentci</button></a></p>
+</div>
+   <hr style="color: dimgrey;">
 <div class='category'>
-        <table>
+    <table class="category">
+        {% if user.is_superuser %}
+    <p><b>DODAJ: </b><a href="/product_add/"><button type="button" class="btn btn-secondary">Produkt</button></a>
+            <a href="/category_add/"><button type="button" class="btn btn-secondary">Kategorie</button></a>
+            <a href="/producer_add/"><button type="button" class="btn btn-secondary">Producenta</button></a>
+            </p>
+
+{% endif %}
+
+</table>
+<div class="categories">
+<table class="table table-hover">
         <h1>Lista kategorii:</h1>
 
             <tr>
 
                 {% for category in categorys %}
                     <th>{{category.name}}</th>
-                    <th><a href="/category_details/{{category.id}}"><img src ="{% static 'szczegoly.jpg' %}" width="140" height="30" alt="szczegoly" title="szczegoly"></a></th>
+                    <td> <a href="/category_details/{{category.id}}"><button type="button" class="btn btn-secondary">Szczegóły</button> </a></td>
 
 
                     {% if user.is_superuser %}
-                    <th><a href="/category_edit/{{ category.id }}"><img src ="{% static 'edytuj.jpg' %}" width="140" height="30" alt="logo" title="edytuj"></a></th>
-                    <th><a href="/category_delete/{{category.id}}"><img src ="{% static 'usun.jpg' %}" width="140" height="30" alt="logo" title="usun"></a></th>
+                    <td> <a href="/category_edit/{{ category.id }}"><button type="button" class="btn btn-secondary">Edytuj</button> </a></td>
+                    <td> <a href="/category_delete/{{category.id}}"><button type="button" class="btn btn-secondary">Usuń</button> </a></td>
                     {% endif %}
 
             </tr>
                 {%endfor %}
+        </div>
         </table>
 </div>
 {% endblock %}

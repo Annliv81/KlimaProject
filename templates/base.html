@@ -3,6 +3,11 @@
 <!doctype html>
 <html>
     <head>
+    <script src="{% static "bootstrap-4.5.0-dist/js/bootstrap.js"%}"></script>
+    <script src="{% static "jquery-3.5.1.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap-4.5.0-dist/css/bootstrap.css"%}">
+
+    <script src="{%static "app.js" %}"></script>
     <meta charset="UTF-8">
     <title>Klimatyzacje</title>
 
@@ -10,18 +15,19 @@
 
 <div class = "login">
 
-<a class="block_2" href="/user_registration">Zarejestruj się</a>&emsp;
+
              {% if request.user.is_authenticated %}
-            Cześć {{request.user.username}}
-            <a href="/logout"> Wyloguj się</a>
+                 <p>Witaj {{request.user.username}}
+            <a href="/logout"><button type="button" class="btn btn-light">Wyloguj się</button></a>
 
         {% else %}
-            <a href="/user_login">Zaloguj się</a>
+            <a href="/user_login"><button type="button" class="btn btn-light">Zaloguj się</button></a>
         {% endif %}
-
+    <a class="block_2" href="/user_registration"><button type="button" class="btn btn-light">Zarejestruj się</button></a>&emsp;
     <div class="basket">
+    <a href="/profil/{{ user.profil.id }}"><img src="{% static 'person.png' %}" width="40" height="30" alt="zamówienia" /></a>&emsp;
     <a href="/product_search"><img src="{% static 'lupka.jpg' %}" width="50" height="30" alt="szukaj" /></a>&emsp;
-    <a href="/basket"><img src="{% static 'koszyk.jpg' %}" width="40" height="30" alt="koszyk" /></a>&emsp;
+    <a href="/cart/{{ product.id }}"><img src="{% static 'koszyk.jpg' %}" width="40" height="30" alt="koszyk" /></a>&emsp;
     </div></div>
 </div>
 
@@ -33,11 +39,11 @@
             <div>
 <div class = "menu">
     <p>
-    <a  href="/">Home</a>&emsp;
-    <a  href="/oferts">Sklep</a>&emsp;
-    <a  href="/montaz">Montaż</a>&emsp;
-    <a  href="/certyfikaty">Certifikaty</a>&emsp;
-    <a  href="/kontakt">Kontakt</a>&emsp;
+    <a  href="/"><button type="button" class="btn btn-outline-secondary">Home</button></a>&emsp;
+    <a  href="/products"><button type="button" class="btn btn-outline-secondary">Sklep</button></a>&emsp;
+    <a  href="/montaz"><button type="button" class="btn btn-outline-secondary">Montaż</button></a>&emsp;
+    <a  href="/certyficate"><button type="button" class="btn btn-outline-secondary">Certifikaty</button></a>&emsp;
+    <a  href="/contact"><button type="button" class="btn btn-outline-secondary">Kontakt</button></a>&emsp;
 
     </p>
 </div></div>
@@ -49,6 +55,7 @@
     </div>
 
             {% block content %}
+
 
             {% endblock %}
 

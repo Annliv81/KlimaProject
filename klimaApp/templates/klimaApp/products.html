@@ -2,53 +2,61 @@
 {% load static %}
 {% block content %}
 
-<table>
-{% if user.is_superuser %}
-    <h1>
 
-        <tr>
-            <th><h2>Dodaj:</h2></th>
-            <th scope="row"><a href="/product_add/"><img src ="{% static 'produkt.jpg' %}" width="140" height="30" title="produkt"/></a></th>
-            <th scope="row"><a href="/category_add/"><img src ="{% static 'kategoria.jpg' %}" width="140" height="30" title="kategoria"/></a></th>
-            <th scope="row"><a href="/producer_add/"><img src ="{% static 'producent.jpg' %}" width="140" height="30" title="producent"/></a></th>
-        </tr>
-
-    </h1>
-
-{% endif %}
-
-</table>
+<div class = "home1">
 
 
-
-<div class="products">
-    <h2>Oferta Klimatyzacji:</h2>
-<div class = "menu">
-    <p><a href="/oferts/">Produkty</a>
-        <a href="/categories/">Kategorie</a>
-        <a href="/producers/"> Producenci</a></p>
+    <p><a href="/products/"><button type="button" class="btn btn-Home">Produkty</button></a>
+        <a href="/categories/"><button type="button" class="btn btn-Home">Kategorie</button></a>
+        <a href="/producers/"><button type="button" class="btn btn-Home">Producentci</button></a></p>
 </div>
-<div class="gallery">
-    <table class="gallery">
+   <hr style="color: dimgrey;">
 
-        <tr>
+<div class="home1">
+    <h2>Zobacz z jakich produktów możemy zrealizować Twoje zamówienie:</h2>
+
+<div class="gallery">
+<br>
+    <th><a  href="/products"><button type="button" class="btn btn-outline-secondary">KLIMATYZACJE</button></a>
+    <td><a  href="/pomps"><button type="button" class="btn btn-outline-secondary">POMPY CIEPŁA</button></td></th>
+{% if user.is_superuser %}
+    <p><b>DODAJ: </b><a href="/product_add/"><button type="button" class="btn btn-secondary">Produkt</button></a>
+            <a href="/category_add/"><button type="button" class="btn btn-secondary">Kategorie</button></a>
+            <a href="/producer_add/"><button type="button" class="btn btn-secondary">Producenta</button></a>
+            </p>
+{% endif %}
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+      <th scope="col"></th>
+      <th scope="col">Nazwa produktu</th>
+      <th scope="col">Producent</th>
+      <th scope="col">Cena</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+
         {% for product in products %}
             {% if product.foto != None %}
-                <th><img src="{{product.foto.url}}" width=120></th>
+                <td><img src="{{product.foto.url}}" width=120></td>
             {% endif %}
 
-            <th>{{product.name}}</th>
-            <th>{{ product.producer }}</th>
-            <th>{{ product.price }} zł</th>
-            <th><a href="/product_details/{{product.id}}"><img src ="{% static 'szczegoly.jpg' %}" width="140" height="30" alt="szczegoly" title="szczegoly"></a></th>
-            <th><a href="/basket/{{.id}}"><img src ="{% static 'koszyk.jpg' %}" width="40" height="30" alt="Dodaj" title="Dodaj do koszyka"></a></th>
-
-
-            {% if user.is_superuser %}
-                <th><a href="/product_edit/{{ product.id }}"><img src ="{% static 'edytuj.jpg' %}" width="140" height="30" alt="edytuj" title="edytuj"></a></th>
-                <th><a href="/product_delete/{{product.id}}"><img src ="{% static 'usun.jpg' %}" width="140" height="30" alt="usun" title="usun"></a></th>
-
+            <td>{{product.name}}</td>
+            <td>{{ product.producer }}</td>
+            <td>{{ product.price }} zł</td>
+            <td><a href="/product_details/{{product.id}}"><button type="button" class="btn btn-secondary">Szczegoly</button></a></td>
+                        {% if user.is_superuser %}
+                            <td><a href="/product_edit/{{ product.id }}"><button type="button" class="btn btn-secondary">Edytuj</button></a></td>
+                <td><a href="/product_delete/{{product.id}}"><button type="button" class="btn btn-secondary">Usuń</button></a></td>
             {% endif %}
+            <th><a href="/addAirProductToCart/{{ product.id }}"><img src ="{% static 'koszyk.jpg' %}" width="40" height="30" alt="Dodaj" title="Dodaj do koszyka"></a></th>
+
+
+
         </tr>
 
 
@@ -56,6 +64,6 @@
 
 
     </table>
-</div></div>
-            <h2>Oferta Montażu:</h2>
+</div>
+            <h3>POMPY CIEPŁA</h3>
 {% endblock %}

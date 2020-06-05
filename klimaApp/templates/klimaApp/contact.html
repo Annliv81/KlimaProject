@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="kontakt">
+<div><a><tr>
+	     <h3>Zapraszamy do naszego biura (po wcześniejszym uzgodnieniu terminu):</h3>
+	     <br>ul.Głogowska 174
+	     <br>60-126 Poznań
+             <p> </p>
+	     <p><b>Godziny pracy biura: </b>
+	     <br>pn-pt 10.00 - 14.00
+
+	      <p>
+
+	    <p><img src="{% static 'telf.jpg' %}" width="35" height="34" alt="" />tel. 796 378 930
+
+	    <p><img src="{% static 'mail.jpg' %}" width="35" height="35" alt="" /><a href="mailto:kontakt@aiuto.com.pl">kontakt@aiuto.com.pl</font></a>
+
+<p>
+<b>Mapa dojazdu</b></a></td></tr>
+<td class="thumbnail"><a href="http://mapy.google.pl/maps?f=q&source=s_q&hl=pl&geocode=&q=Pozna%C5%84,+ul.+G%C5%82ogowska+174&aq=&sll=52.35018,16.87794&sspn=0.006527,0.01929&ie=UTF8&hq=&hnear=G%C5%82ogowska+174,+Pozna%C5%84,+Wielkopolskie&ll=52.384611,16.88839&spn=0.006522,0.01929&z=16">
+    <td><img src="{% static 'mapaaiuto.jpg' %}" width="300" height="250" alt="" /></td>
+
+
+</div>
+<td>
+    <hr style="color: darkblue;">
+</td>
+
+  <div class="contaktForm">
+        <h1>KONTAKT</h1>
+            <div class="formContact">
+
+
+                    WYPEŁNIJ FORMULARZ - SKONTAKTUJEMY SIĘ Z TOBĄ
+    <form action="" method="post">
+        <ul>
+        {% csrf_token %}
+            {{form.as_p}}
+        <input type="submit" value="Wyślij">
+        </ul>
+    </form>
+            </div>
+{% endblock %}
+
+

@@ -2,16 +2,33 @@
 {% load static %}
 
 {% block content %}
+        <div class = "home1">
+
+
+    <p><a href="/products/"><button type="button" class="btn btn-Home">Produkty</button></a>
+        <a href="/categories/"><button type="button" class="btn btn-Home">Kategorie</button></a>
+        <a href="/producers/"><button type="button" class="btn btn-Home">Producentci</button></a></p>
+</div>
+   <hr style="color: dimgrey;">
 <div class='category'>
- <table>
+<table>
+        {% if user.is_superuser %}
+    <p><b>DODAJ: </b><a href="/product_add/"><button type="button" class="btn btn-secondary">Produkt</button></a>
+            <a href="/category_add/"><button type="button" class="btn btn-secondary">Kategorie</button></a>
+            <a href="/producer_add/"><button type="button" class="btn btn-secondary">Producenta</button></a>
+            </p>
+
+{% endif %}
+</table>
+<table class="table table-hover">
             <tr>
                 <h1>Lista producentów:</h1>
 
                     {% for producer in producers %}
                         <th>{{producer.name}}</th>
                         {% if user.is_superuser %}
-                        <th><a href="/producer_edit/{{producer.id}}"><img src ="{% static 'edytuj.jpg' %}" width="140" height="30" alt="edytuj" title="edytuj"></a></th>
-                        <th><a href="/producer_delete/{{producer.id}}"><img src ="{% static 'usun.jpg' %}" width="140" height="30" alt="usun" title="usun"></a></th>
+                            <td><a href="/producer_edit/{{producer.id}}"><button type="button" class="btn btn-secondary">Edytuj</button></a></td>
+                            <td><a href="/producer_delete/{{producer.id}}"><button type="button" class="btn btn-secondary">Usuń</button></a></td>
                         {% endif %}
 
             </tr>

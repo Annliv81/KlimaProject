@@ -37,11 +37,12 @@ from klimaApp.views import(
     AddProducerView,
     ProducerEditView,
     ProducerDeleteView,
-    MontazView,
-    CertyfikatView,
+    CertyficateView,
     ContactFormView,
     OzoneView,
     PompView,
+    ValuationFormView,
+
 
 )
 from klimaApp import views
@@ -51,26 +52,34 @@ urlpatterns = [
     path('user_login/', UserLoginView.as_view(), name="user-login"),
     path('logout/', UserLogoutView.as_view(), name='logout'),
     path('user_registration/', UserRegisterView.as_view(), name='registration'),
-    path('oferts/', ProductListView.as_view(), name='product-list'),
+    path('products/', ProductListView.as_view(), name='product-list'),
     path('product_details/<int:id>', ProductDetailsView.as_view(), name='product-details'),
+    path('product_add/', AddProductView.as_view(), name='product-add'),
     path('product_edit/<int:product_id>', views.ProductEditView.as_view(), name="product-edit"),
     path('product_delete/<int:product_id>', ProductDeleteView.as_view(), name="product-delete"),
     path('product_search/', ProductSearchView.as_view(), name="product-search"),
-    path('product_add/', AddProductView.as_view(), name='product-add'),
+    path('categories/', CategoryListView.as_view(), name='category-list'),
     path('category_add/', AddCategoryView.as_view(), name='category-add'),
     path('category_edit/<int:category_id>', CategoryEditView.as_view(), name='category-edit'),
     path('category_delete/<int:category_id>', CategoryDeleteView.as_view(), name='category-delete'),
-    path('categories/', CategoryListView.as_view(), name='category-list'),
     path('category_details/<int:id>', CategorytDetailsView.as_view(), name='cateogry-details'),
     path('producers/', ProducerListView.as_view(), name="producer-list"),
     path('producer_add/', AddProducerView.as_view(), name='producer-add'),
     path('producer_edit/<int:producer_id>', ProducerEditView.as_view(), name="producer-edit"),
     path('producer_delete/<int:producer_id>', ProducerDeleteView.as_view(), name="producer-delete"),
-    path('montaz/', MontazView.as_view(), name='montaz-opis'),
-    path('certyfikaty/', CertyfikatView.as_view(), name="certyfikaty"),
-    path('kontakt/', ContactFormView.as_view(), name="contact-form"),
+    path('montaz/', ValuationFormView.as_view(), name='montaz-opis-formularz'),
+    path('certyficate/', CertyficateView.as_view(), name="certyficate"),
+    path('contact/', ContactFormView.as_view(), name="contact-form"),
     path('ozone/', OzoneView.as_view(), name="ozone"),
     path('pomps/', PompView.as_view(), name="pomps"),
+    path('cart/', views.CartView.as_view(), name="cart"),
+    path('addAirProductToCart/<int:id_product>', views.AddAirProductToCartView.as_view(), name="add-product-to-cart"),
+    path('changequantity/<int:product_id>', views.ChangeQuantity.as_view(), name="change-quantity"),
+    path('remove_from_cart/<int:product_id>', views.RemoveAirFromCardView.as_view(), name='remove_air_from_cart'),
+    path('order/', views.OrderView.as_view(), name="order"),
+    path("profil/<int:pk>/", views.ProfilView.as_view(), name="profil")
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,38 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="home1">
-    <h1>Montaż:</h1>
+<div class="text">
+    <h2>Obecnie możliwe są dwa warianty zakupu klimatyzatora typu split:</h2>
+    <li>zakup z montażem</li>
+    <li>zakup przez certyfikowane firmy instalatorskie</li>
+    <p>Ustawa z dnia 15.05.2015 na podstawie Rozporządzenia Parlamentu Europejskiego</p>
+<p class="list-unstyled">
 
-    <h2>Montaż i serwis klimatyzacji w Poznaniu i okolicach</h2>
-    <h3>Jak wygląda u nas montaż klimatyzacji?</h3>
-<ul>
-    <li>Zlecenie instalacji każdego klimatyzatora analizujemy indywidualnie i opisując je w skrócie, przeważnie składa się
-        <br>z następujących etapów, które wykonujemy w kilka dni:
 
-<li>Kontakt telefoniczny lub bezpośredni z naszą firmą którego celem jest umówienie niezobowiązującej wizyty u klienta.
-<li>Bezpłatna wizyta na miejscu inwestycji na terenie Poznania lub okolic w celu realizacji usługi doradczej, podczas której:
-<li>zaproponujemy rozwiązania i produkty o odpowiedniej mocy najlepiej spełniające oczekiwania, czyli najlepiej dostosowany do obiektu
-    <br>rodzaj klimatyzacji (klimatyzacja: split, multi split, kasetonowa, kanałowa, przypodłogowo-podsufitowa),<br>
-wyznaczymy trasę przebiegu instalacji freonowej, która łączy jednostkę zewnętrzną z wewnętrzną,
-    <br>a w sytuacji montażu systemu kanałowego – dodatkowo trasę przebiegu kanałów nawiewnych.
-<br>Po wyborze rodzaju, dobierzemy odpowiednią moc urządzenia, dostosowaną do obiektu w którym klimatyzacja będzie pracować. Takie doradztwo oraz bezpośredni szybki kontakt na każdym etapie realizacji usługi budzi wśród klientów spokój i zaufanie.
-W oparciu o pozyskane dane przygotujemy ofertę, warunki umowy i ustalimy termin realizacji. Po akceptacji przez zmawiającego zlecenia na miejsce montażu dostarczymy urządzenie wraz z niezbędnymi akcesoriami.
- <li>Instalacja całego systemu obejmuje:
-<br>wykonanie niezbędnych przewiertów oraz bruzd w ścianach lub ułożenie listwy maskującej,
-<br>instalację jednostki wewnętrznej, tzw. parownika,
-<br>instalację jednostki zewnętrznej, tzw. skraplacza,
-<br>ułożenie instalacji freonowej oraz elektrycznej łączącej jednostkę wewnętrzną z zewnętrzną w bruzdach ściennych lub w listwie maskującej,
-<br>połączenie jednostek ze sobą i doprowadzenie zasilania,
-<br>wykonanie grawitacyjnego odprowadzenia skroplin,
-<br>wprowadzenie czynnika chłodniczego i kontrolę szczelności instalacji chłodniczej,
-<br>uruchomienie urządzenia i sprawdzenie poprawności funkcjonowania,
-<br>uzupełnienie ubytków oraz przeprowadzenie czynności wykończeniowych na ścianach niwelujących wszelkie niedoskonałości.
-<li>Przeszkolenie w zakresie obsługi klimatyzacji za pomocą pilota lub sterownika zainstalowanego na stałe na ścianie.
-<li>Poinformowanie klienta o warunkach gwarancji oraz serwisu klimatyzacji oraz kiedy powinny być wykonywane przeglądy.
 
-    </li> </ul>
+  <h2>Montaż podstawowy klimatyzacji obejmuje:</h2>
+    <li>montaż jednostki wewnętrznej do 2,5m wysokości</li>
+    <li>montaż podpory pod jednostkę zewnętrzną i jednostki zewnętrznej do 2,5m wysokości od gruntu lub powierzchni zapewniającej
+    stabilną podstawę rusztowania</li>
+    <li>doprowadzenie do istniejącej instalacji elektrycznej zasilania urządzenia do 2m odległości natynkowo</li>
+    <li>pojedyńczy przewiert przez całą ścianę niezbrojoną do grubości 30 cm</li>
+    <li>wprowadzenie instalacji skroplin grawitacyjnie do 2m</li>
+    <li>połączenie jednostki wewnętrznej i zewnętrznej do 2m wraz z materiałami</li>
+    <li>zabezpieczenie instalacji miedzianej, elektrycznej i sterowania w zależności od materiałów</li>
+    <li>wykonanie próżni w instalacji i wyrównanie poziomu czynnika do znamionowego(do 100g)</li>
+    <li>uruchomienie urządzenia i instruktaż Klienta</li>
 
-</ol>
+  <h1>Cena za montaż podstawowy: 1200 zł</h1>
+
+
+
+
+
+                        <hr style="color: dimgrey;">
+ <div class="contaktForm">
+
+
+                 <div class="formContact">
+                <h1>WYCENA</h1>
+
+                    WYPEŁNIJ FORMULARZ - BY UZYSKAĆ WSTĘPNĄ WYCENĘ USŁUGI
+                     <form action="" method="post">
+                            <ul>
+                            {% csrf_token %}
+                                {{form.as_p}}
+                                    <input type="submit" value="Wyślij">
+                             </ul>
+                    </form>
+                 </div>
+
+        <hr style="color: dimgrey;">
+
+    </div>
+
 </div>
 {% endblock %}

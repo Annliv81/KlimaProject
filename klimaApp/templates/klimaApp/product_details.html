@@ -1,22 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+    <div class = "home1">
+
+
+    <p><a href="/products/"><button type="button" class="btn btn-Home">Produkty</button></a>
+        <a href="/categories/"><button type="button" class="btn btn-Home">Kategorie</button></a>
+        <a href="/producers/"><button type="button" class="btn btn-Home">Producentci</button></a></p>
+</div>
+   <hr style="color: dimgrey;">
+        <div class = "home1">
 <ol>
     <h1>{{product_details.name}}</h1>
-    <ul>
+
         <p>
 
             {% if product_details.foto != None %}
-                <th><img src="{{product_details.foto.url}}" width=440></th>
+                <th><img src="{{product_details.foto.url}}" width=500></th>
             {% endif %}
-
 
 
         <p> <b>Opis produktu:</b> {{product_details.description}}</p>
         <p> <b>Producent:</b> {{ product_details.producer }}</p>
         <p> <b>Kolor:</b> {{product_details.get_color_display}} </p>
         <p><b> Cena: {{product_details.price}}zł </b></p>
-    <form action="" method='post'>
+
+    <form action="/order/" method='post'>
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Dodaj do koszyka">
@@ -24,4 +34,5 @@
 
     </ul>
 </ol>
+    </div>
 {% endblock %}

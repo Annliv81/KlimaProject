@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="home1">
+<h3>Witaj {{ user.first_name}} {{ user.last_name }}</h3>
+
+    <h2>Twoje zamówienie nr {{ order.id }} zostało przekazane do realizacji </h2>
+    <p>Status: oczekujemy na Twoją płatność</p>
+</div>
+{% endblock %}

@@ -3,20 +3,22 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LogoutView
-from .models import AirProduct, Category, Producer, Contact
-from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.views.generic import CreateView, ListView, DeleteView, FormView, UpdateView
-from .forms import UserLoginForm, AirProductSearchForm, ContactForm, UserRegisterForm
-from django.contrib.auth.models import User
+from .models import AirProduct, Category, Producer, Profil, Order, Cart, CartProducts
+from django.views.generic import CreateView, ListView, DeleteView, FormView, UpdateView, DetailView
+from .forms import UserLoginForm, AirProductSearchForm, ContactForm, UserRegisterForm, ValuationForm, OrderForm
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+
 
 
 
 # Create your views here.
 
+#### logowanie i rejestracja #############################################################################
+
 class UserLoginView(FormView):
     form_class=UserLoginForm
     template_name='klimaApp/form.html'
-    success_url ='/'
+    success_url ='/products/'
 
     def form_valid(self, form):
         user = authenticate(**form.cleaned_data)
@@ -36,18 +38,57 @@ class UserRegisterView(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        user = form.save()
-        return redirect('/')
+        user = form.save(commit=False)
+        user.set_password(form.cleaned_data["password"])
+        user.save()
+        Profil.objects.create(user=user)
+        return super().form_valid(form)
 
+
+################# Podstrony html ##########################################################################
+############# strona o nas###
 class IndexView(View):
     def get(self, request):
         form = ContactForm()
+        form2 = ValuationForm()
         return render(
             request,
-            "klimaApp/o_nas.html", {'form':form}
+            "klimaApp/o_nas.html", {'form':form, 'form2':form2}
+        )
+    """
+class MontazView(View):
+    def get(self, request):
+        form = PricesForm()
+        return render(
+            request,
+            'klimaApp/montaz.html', {'form':form}
+        )
+"""
+
+class CertyficateView(View):
+    def get(self, request):
+        return render(
+            request,
+            'klimaApp/certificate.html',
         )
 
+class OzoneView(View):
+    def get(self, request):
+        return render(
+            request,
+            'klimaApp/ozone.html',
+        )
 
+class PompView(View):
+    def get(self, request):
+        return render(
+            request,
+            'klimaApp/pomps.html',
+        )
+
+################### PRODUKT ##############################################################################
+
+#produkty wyświetlane za pomogą templatki products.html na stronie /oferts.html
 class ProductListView(View):
     def get(self, request):
         products = AirProduct.objects.order_by("producer__name")
@@ -55,6 +96,7 @@ class ProductListView(View):
                       'klimaApp/products.html',
                       {'products': products},
                       )
+
 
 class ProductDetailsView(View):
     def get(self, request,id):
@@ -71,16 +113,16 @@ class AddProductView(PermissionRequiredMixin, CreateView):
     fields = ['name', 'color', 'description', 'price', 'category', 'producer', 'foto', 'available']
     template_name = 'klimaApp/add_product.html'
     permission_required = 'klimaApp.add_product'
-    success_url = '/oferts'
+    success_url = '/products'
 
 class ProductEditView(PermissionRequiredMixin,UpdateView):
     model = AirProduct
-    template_name = "klimaApp/product_edit.html"
+    template_name = "klimaApp/form.html"
     pk_url_kwarg = "product_id"
     permission_required = "klimaApp.change_product"
     permission_denied_message = "Sorry, You don't have permission"
     fields = ['name', 'color', 'description', 'price', 'category', 'producer', 'foto', 'available']
-    success_url = "/oferts/"
+    success_url = "/products/"
 
 """
 from django import forms
@@ -110,7 +152,7 @@ class ProductDeleteView(PermissionRequiredMixin,DeleteView):
     pk_url_kwarg = "product_id"
     permission_required = "klimaApp.delete_product"
     permission_denied_message = "Sorry, You don't have permission"
-    success_url = '/oferts/'
+    success_url = '/products/'
 
 class ProductSearchView(View):
     def get(self, request):
@@ -138,6 +180,7 @@ class ProductSearchView(View):
 
         return render(request, 'klimaApp/product_search.html', {'form': form, 'object_list':products})
 
+###################### CATEGORY - KATEGORIA ####################################################################
 
 class CategoryListView(View):
     def get(self, request):
@@ -181,6 +224,9 @@ class CategoryDeleteView(PermissionRequiredMixin,DeleteView):
     permission_denied_message = "Sorry, You don't have permission"
     success_url = '/categories/'
 
+
+######################### PRODUCERS - PRODUCENCI ###########################################################
+
 class ProducerListView(View):
     def get(self, request):
         producers = Producer.objects.all().order_by('name')
@@ -216,53 +262,81 @@ class ProducerDeleteView(PermissionRequiredMixin,DeleteView):
     permission_denied_message = "Sorry, You don't have permission"
     success_url = '/producers/'
 
-class MontazView(View):
-    def get(self, request):
-        return render(
-            request,
-            'klimaApp/montaz.html',
-        )
 
-class CertyfikatView(View):
-    def get(self, request):
-        return render(
-            request,
-            'klimaApp/certyfikaty.html',
-        )
+##################### WIDOKI OD FORMULARZY ######################
 
 class ContactFormView(CreateView):
     form_class = ContactForm
-    template_name = 'klimaApp/kontakt.html'
-    success_url = '/kontakt/'
+    template_name = 'klimaApp/contact.html'
+    text = 'Wypełnij formularz, skontaktujemy się z Tobą'
+    success_url = '/contact/'
 
-class MessageListView(ListView):
-    queryset = Contact.objects.all()
-    template_name = 'klimaApp/list.html'
-"""
-class AddItemToCardView(View):
-    def get(self, request, id_product):
-        cart, created=Cart.objects.get_or_create(user=request.user)
-        air = AirProduct.objects.get(id=id_product)
-        cart.product.add(air)
-        return HttpResponse("dodaliśmy wszytko")
+class ValuationFormView(CreateView):
+    form_class = ValuationForm
+    template_name = 'klimaApp/montaz.html'
+    success_url = '/montaz/'
 
 class CartView(View):
     def get(self, request):
-    cart, created = Cart.objects.get_or_create(user=request.user)
-    return render(request, 'klimaApp/shoping_cart.html', {'cart':"cart"})
-"""
+        cart, created = Cart.objects.get_or_create(client=request.user)
+        return render(request, 'klimaApp/cart.html', {'cart':cart})
 
 
-class OzoneView(View):
+class AddAirProductToCartView(View):
+    def get(self, request, id_product):
+        cart, created = Cart.objects.get_or_create(client=request.user)
+        product = AirProduct.objects.get(id=id_product)
+        cart.products.add(product)
+        return redirect('/products/')
+
+def cart_details(request):
+    cart=Cart.objects.get(client=request.user)
+    cart_products= CartProducts.objects.filter(cart=cart)
+    return render(request, 'klimaApp/cart.html', {'cart':cart, 'cart_products':cart_products})
+
+
+class RemoveAirFromCardView(LoginRequiredMixin, View):
+    def get(self, request, product_id):
+        cart = Cart.objects.get(client=request.user)
+        product = AirProduct.objects.get(id=product_id)
+        cart.products.remove(product)
+        return redirect('cart')
+
+class ChangeQuantity(View):
+    def post(self, request, product_id):
+        cart = Cart.objects.get(client=request.user)
+        product = AirProduct.objects.get(pk=product_id)
+        kp = CartProducts.objects.get(cart=cart, product=product)
+        if request.POST.get("type")=='+':
+            kp.quantity +=1
+        elif request.POST.get("type")=="-":
+            kp.quantity -=1
+        else:
+            kp.quantity= 0
+        kp.save()
+        return redirect(f"/cart/")
+class ProfilView(DetailView):
+    model = Profil
+    template_name = "klimaApp/profil.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['orders'] = self.request.user.order_set.all()
+        return context
+
+class OrderView(View):
     def get(self, request):
-        return render(
-            request,
-            'klimaApp/ozone.html',
-        )
+        form = OrderForm()
+        return render(request, 'klimaApp/order.html', {"form":form})
+    def post(self, request):
+        order = Order()
+        order.user = request.user
+        order.save()
+        cart = request.user.cart
+        order.products.set(cart.products.all())
+        cart.products.clear()
+        return render(request, "klimaApp/order_confirmation.html", {'order':order})
 
-class PompView(View):
-    def get(self, request):
-        return render(
-            request,
-            'klimaApp/pomps.html',
-        )
+
+
+

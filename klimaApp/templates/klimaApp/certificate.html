@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class='category'>
+<table>
+{% if user.is_superuser %}
+    <h1>
+
+        <tr>
+            <th><h2>Dodaj:</h2></th>
+            <th scope="row"><a href="/product_add/"><img src ="{% static 'produkt.jpg' %}" width="140" height="30" title="produkt"/></a></th>
+            <th scope="row"><a href="/category_add/"><img src ="{% static 'kategoria.jpg' %}" width="140" height="30" title="kategoria"/></a></th>
+            <th scope="row"><a href="/producer_add/"><img src ="{% static 'producent.jpg' %}" width="140" height="30" title="producent"/></a></th>
+        </tr>
+
+    </h1>
+
+{% endif %}
+
+</table>
+           <div class="home1">
+<table class="table table-hover">
+
+        <h1>Certyfikaty:</h1>
+      <hr style="color: dimgrey;">
+    <h3>Certyfikat Urzędu Dozoru Technicznego o nr FGAZ-0/03/00122/20</h3>
+      <hr style="color: dimgrey;">
+    <h3>Certyfikat z Rejestru Certyfikowanych Przedsiębiorców o nr FGAZ-P/19/0543/20</h3>
+      <hr style="color: dimgrey;">
+<tr>
+        <th><img src ="{% static 'C1.jpg' %}" width="600" height="300" title="C1"/></th>
+    <th></th>
+        <th><img src ="{% static 'C2.jpg' %}" width="600" height="300" title="C2"/></th>
+    <tr>
+        <th><img src ="{% static 'C3.jpg' %}" width="600" height="300" title="C3"/></th>
+            <th></th>
+        <th><img src ="{% static 'C4.jpg' %}" width="600" height="300" title="C4"/></th>
+</tr>
+            <tr>
+
+        </table>
+</div>
+</div>
+{% endblock %}
+
+
+

@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 
-from .models import Contact, Producer, Category
+from .models import Contact, Producer, Category, Valuation, Order
 
 
 class AirProductSearchForm(forms.Form):
@@ -30,7 +31,6 @@ class UserLoginForm(forms.Form):
 
 class UserRegisterForm(forms.ModelForm):
     password2 = forms.CharField(max_length=128, widget=forms.PasswordInput)
-
     class Meta:
         model = User
         fields = (
@@ -55,4 +55,16 @@ class UserRegisterForm(forms.ModelForm):
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
+        exclude = ('date_sent',)
+
+class ValuationForm(forms.ModelForm):
+    class Meta:
+        model = Valuation
+        fields = ('first_name', 'last_name', 'mail', 'phone', 'topic', 'area', 'cubature', 'bulding', 'flor', 'message')
+        exclude = ('date_sent',)
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('products', 'user')
         exclude = ('date_sent',)

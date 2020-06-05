@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="home1">
+<h3>Witaj {{ user.first_name}} {{ user.last_name }}</h3>
+        <h3>Twoje zamówienie:</h3>
+    <ul>
+        {% for product in order.products.all %}
+            <li>{{ product.name }}</li>
+            <li>{{ product.price }} zł</li>
+            <li>{{ product.quantity }}</li>
+        {% endfor %}
+    </ul>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+                <input type="submit" value="Zamawiam">
+
+        </form>
+    </div>
+{% endblock %}
+
+
+

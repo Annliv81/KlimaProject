@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h2>Formulrz dodawania produktu:</h2>
-    <form action="" method='post' enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
 
+    <div class="home1">
+{% if user.is_superuser %}
+    <p><b>DODAJ: </b><a href="/product_add/"><button type="button" class="btn btn-secondary">Produkt</button></a>
+            <a href="/category_add/"><button type="button" class="btn btn-secondary">Kategorie</button></a>
+            <a href="/producer_add/"><button type="button" class="btn btn-secondary">Producenta</button></a>
+            </p>
+{% endif %}
+        <h2>Formularz dodawania produktu:</h2>
+    <br>
+        <form action="" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+<br>
         <input type="submit" value="Dodaj produkt">
 
-    </form>
-
+        </form>
+     </div>
 {% endblock %}

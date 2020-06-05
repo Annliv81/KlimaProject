@@ -39,8 +39,7 @@ div.mainIMG{
 div.menu{
     display: inline-block;
     text-align: center;
-    color: dimgrey;
-    line-height: 10px;
+
 }
 
 html {
@@ -57,24 +56,20 @@ p {
   font-size: 1.2rem;
 }
 div.products{
-    text-align: center;
-        font-family: worksans-extralight, "work sans", sans-serif;
+    position:relative;
+    font-family: worksans-extralight, "work sans", sans-serif;
     color: dimgrey;
-
-
 }
 
-table.gallery{
-    text-align: center;
-        font-family: worksans-extralight, "work sans", sans-serif;
-    color: dimgrey;
 
-
+div.gallery{
+        text-align: center;
+        color: dimgrey;
 }
-
 /*------------------------------*/
 /*---- home /  o nas----*/
 /*------------------------------*/
+
 
 div.home1{
     text-align: center;
@@ -91,7 +86,7 @@ div.home1{
     line-height: 1.35em;
 
 }
-div.home2{
+div.uslugi{
    text-align: center;
     color: dimgrey;
     font-family: worksans-extralight, "work sans", sans-serif;
@@ -104,7 +99,6 @@ div.home2{
     font-stretch: normal;
     font-size: 18px;
     line-height: 1.35em;
-
 }
 div.home3{
    text-align: center;
@@ -155,7 +149,7 @@ div.copyright{
     line-height: 1.35em;
 }
 div.contactForm{
-       text-align: center;
+   text-align: center;
     color: dimgrey;
     font-family: worksans-extralight, "work sans", sans-serif;
     font-style: normal;
@@ -170,9 +164,24 @@ div.contactForm{
 }
 
 div.formContact{
-           text-align: center;
+
+       text-align: center;
+    color: dimgrey;
+    font-family: worksans-extralight, "work sans", sans-serif;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 18px;
+    line-height: 1.35em;
 }
 
+div.h1{
+               text-align: center;
+}
 /*------------------------------*/
 /*---- KONTAKT----*/
 /*------------------------------*/
@@ -199,9 +208,22 @@ div.home5{
     line-height: 1.35em;
 }
 
-div.category{
+div.category {
     text-align: center;
     color: dimgrey;
+}
 
+div.text{
+    text-align: justify;
+    color: dimgrey;
+}
+
+
+/*------------------------------*/
+/*---- CATEGORIES----*/
+/*------------------------------*/
+
+div.categories{
+        text-align: center;
 }
 

@@ -15,11 +15,11 @@
 </div>
 
                         <hr style="color: dimgrey;">
-<div class="home2">
+<div class="uslugi">
         <h1>NASZE USŁUGI</h1>
     <div>
     <p>
-    <a  href="/oferts"><img src ="{% static 'montazKLIM.jpg' %}" width="320" height="250" alt="klimatyzacje" title="klimatyzacje"></a>&emsp;
+    <a  href="/products"><img src ="{% static 'montazKLIM.jpg' %}" width="320" height="250" alt="klimatyzacje" title="klimatyzacje"></a>&emsp;
     <a  href="/ozone"><img src ="{% static 'ozone.jpg' %}" width="320" height="250" alt="ozonowanie" title="ozonowanie"></a>&emsp;
     <a  href="/pomps"><img src ="{% static 'pompyCIE.jpg' %}" width="320" height="250" alt="pompy" title="pompyC"></a>&emsp;
 
@@ -30,14 +30,17 @@
                         <hr style="color: dimgrey;">
 
 </div>
-    <div class="home3">
-        <h1>UZYSKAJ WYCENĘ</h1>
-            <div>
-                <p>
-                    FORMULARZ WYCENY
+  <div class="contaktForm">
 
+            <div class="formContact">
+                <h1>WYCENA USŁUGI</h1>
+                    <form action="/montaz/" method="post">
 
-                </p>
+                    WYPEŁNIJ FORMULARZ - BY UZYSKAĆ WSTĘPNĄ WYCENĘ USŁUGI
+                    {% csrf_token %}
+                        {{form2.as_p}}
+                           <input type="submit" value="Wyślij">
+                    </form>
             </div>
 
         <hr style="color: dimgrey;">
@@ -45,18 +48,20 @@
     </div>
 
   <div class="contaktForm">
-        <h1>KONTAKT</h1>
-            <div class="formContact">
 
+            <div class="formContact">
+        <h1>KONTAKT</h1>
 
                     WYPEŁNIJ FORMULARZ - SKONTAKTUJEMY SIĘ Z TOBĄ
+    <form action="/contact/" method="post">
+        <ul>
         {% csrf_token %}
-  {{form.as_p}}
- <input type="submit" value="Wyślij">
-
+            {{form.as_p}}
+        <input type="submit" value="Wyślij">
+        </ul>
+    </form>
             </div>
-
         <hr style="color: dimgrey;">
 
-    </div>
-{% endblock %} %}
+
+{% endblock %}

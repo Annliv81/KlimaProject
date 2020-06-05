@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="home1">
+            <h1> {{ cart.client }}
+                <img src="{% static 'koszyk.jpg' %}" width="40" height="30" alt="koszyk" /> Twój Koszyk: </h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+
+      <th scope="col"></th>
+      <th scope="col">Nazwa produktu</th>
+      <th scope="col">Cena</th>
+      <th scope="col">Ilość</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+
+
+        {% for pk in cart.cartproducts_set.all %}
+            <tr></tr>
+        <th><img src="{{pk.product.foto.url}}" width=200></th>
+
+        <th> <b></b>{{ pk.product.name }}</th>
+        <th><b>{{ pk.product.price}}zł </b></th>
+        <th><b>{{ pk.quantity }}</b></th>
+             <th> <form method="POST" action="/changequantity/{{ pk.product.id }}">
+                 {% csrf_token %}
+            <input id="increase" type="submit" value="+" name="type">
+            <input id="increase" type="submit" value="-" name="type">
+             </form></th>
+            <th><a href="{% url 'remove_air_from_cart' pk.product.id %}">
+                <img src="{% static 'trash.png' %}" width="40" height="30" alt="usun" /></a>&emsp;</th>
+<tr>
+        {% endfor %}
+            <form action="/order/" method="POST">
+             {% csrf_token %}
+                <th><input type="submit" value="Zamawiam produkty"></th>
+            </form>
+        </tr>
+  </tbody>
+    </table>
+    </div>
+{% endblock %}
+
+
+

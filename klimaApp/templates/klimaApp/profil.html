@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="home1">
+    <img src="{% static 'person.png' %}" width="140" height="130" alt="zamówienia" />
+        <ul> <h2> Dane Kienta:</h2>
+            <li>Imie i nazwisko:<b> {{ object.user.first_name }} {{ object.user.last_name }} </b></li>
+            <li>Email:<b> {{ object.user.email }} </b></li>
+            <li>Login:<b> {{ object.user.username }}</b></li>
+            <li>Zamówienie:<b>{{ object.user.order_set }}</b></li>
+    </ul>
+        <ul><h2>Twoje zamówienie:</h2>
+            {% for order in orders %}
+            <li> {{ order.id }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
